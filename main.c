@@ -15,7 +15,7 @@ typedef struct _Type {
 
 Type num;
 int time = 0;
-char str[100];
+char str[100] = { 0 };
 enum { Null, NUMBER, PLUS, STAR, LP, RP, END } token;
 
 Type expression();
@@ -26,9 +26,8 @@ void error(int i);
 
 void main() {
     Type result;
-    str[99] = { 0 };
     char ch;
-printf("Input : ");
+    printf("Input : ");
     for (int i = 0; i < 100; i++) {
         ch = getchar();
 
@@ -60,8 +59,8 @@ Type expression() {
         if (result.DataType == 0) {
             if (term_result.DataType == 0)
                 result.i_num += term_result.i_num;
-else {
-                result.DataType == 1;
+            else {
+                result.DataType = 1;
                 result.f_num = result.i_num;
                 result.f_num += term_result.f_num;
                 result.warning = true;
@@ -94,7 +93,7 @@ Type term() {
                 result.f_num = result.i_num;
                 result.f_num *= factor_result.f_num;
                 result.warning = true;
-            }   
+            }
         }
         else {
             if (factor_result.DataType == 0) {
